@@ -29,13 +29,14 @@ Once you have completed the above setup, you will have provisioned a local netwo
 There are two options available for running the balance-transfer sample
 For each of these options, you may choose to run with chaincode written in golang or in node.js.
 
-### Option 1:
+### Option 1: **in use***
 
 ##### Terminal Window 1
 
 * Clean the network
 
 ```
+sudo pkill node
 docker rm -f $(docker ps -aq)
 docker rmi -f $(docker images | grep dev | awk '{print $3}')
 rm -rf fabric-client-kv-org[1-2]
@@ -45,6 +46,7 @@ docker network prune
 * Launch the network using docker-compose
 
 ```
+cd fabric-samples/balance-transfer
 docker-compose -f artifacts/docker-compose.yaml up
 ```
 ##### Terminal Window 2

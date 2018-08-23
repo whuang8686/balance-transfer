@@ -75,106 +75,85 @@ echo
 echo "ORG2 token is $ORG2_TOKEN"
 echo
 echo
-echo "3.POST request Create channel  ..."
-echo
-curl -s -X POST \
-  http://localhost:4000/channels \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"channelName":"mychannel",
-	"channelConfigPath":"../artifacts/channel/mychannel.tx"
-}'
-echo
-echo
-sleep 5
-echo "4.POST request Join channel on Org1"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/peers \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org1.example.com","peer1.org1.example.com"]
-}'
-echo
-echo
 
-echo "5.POST request Join channel on Org2"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/peers \
-  -H "authorization: Bearer $ORG2_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org2.example.com","peer1.org2.example.com"]
-}'
-echo
-echo
 
-echo "6.POST Install chaincode on Org1"
+echo "3.POST instantiate chaincode on peer1 of Org1"
 echo
 curl -s -X POST \
-  http://localhost:4000/chaincodes \
+  http://localhost:4000/channels/mychannel/chaincodes \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d "{
-	\"peers\": [\"peer0.org1.example.com\",\"peer1.org1.example.com\"],
 	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\",
+	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
-	\"chaincodeVersion\":\"v0\"
+	\"args\":[\"\"]
 }"
 echo
 echo
 
-echo "7.POST Install chaincode on Org2"
+echo "4.createCpty"
 echo
-curl -s -X POST \
-  http://localhost:4000/chaincodes \
-  -H "authorization: Bearer $ORG2_TOKEN" \
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
-  -d "{
-	\"peers\": [\"peer0.org2.example.com\",\"peer1.org2.example.com\"],
-	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\",
-	\"chaincodeType\": \"$LANGUAGE\",
-	\"chaincodeVersion\":\"v0\"
-}"
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"createCpty",
+	"args":["0001" , "CptyA" , "false"]
+}')
+echo "Transacton ID is $TRX_ID"
 echo
 echo
 
-#echo "8.POST instantiate chaincode on peer1 of Org1"
-#echo
-#curl -s -X POST \
-#  http://localhost:4000/channels/mychannel/chaincodes \
-#  -H "authorization: Bearer $ORG1_TOKEN" \
-#  -H "content-type: application/json" \
-#  -d "{
-#	\"chaincodeName\":\"mycc\",
-#	\"chaincodeVersion\":\"v0\",
-#	\"chaincodeType\": \"$LANGUAGE\",
-#	\"args\":[\"\"]
-#}"
-#echo
-#echo
+echo "4.createCpty"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"createCpty",
+	"args":["0002" , "CptyB" , "false"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
 
-#echo "POST invoke chaincode on peers of Org1"
-#echo
-#TRX_ID=$(curl -s -X POST \
-#  http://localhost:4000/channels/mychannel/chaincodes/mycc \
-#  -H "authorization: Bearer $ORG1_TOKEN" \
-#  -H "content-type: application/json" \
-#  -d '{
-#	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
-#	"fcn":"move",
-#	"args":["a","b","10"]
-#}')
-#echo "Transaction ID is $TRX_ID"
-#echo
-#echo
+echo "4.createCpty"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"createCpty",
+	"args":["0003" , "CptyC" , "false"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
 
-echo "8.GET query chaincode on peer1 of Org1"
+
+echo "5.put approveflag=0"
+echo
+TRX_ID2=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"put",
+	"args":["approveflag" , "0"]
+}')
+echo "Transacton ID is $TRX_ID2"
+echo
+echo
+
+echo "6.GET query chaincode on peer1 of Org1"
 echo
 curl -s -X GET \
   "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryCpty&args=%5B%220001%22%5D" \
@@ -183,7 +162,7 @@ curl -s -X GET \
 echo
 echo
 
-echo "9.GET query Block by blockNumber"
+echo "7.GET query Block by blockNumber"
 echo
 curl -s -X GET \
   "http://localhost:4000/channels/mychannel/blocks/1?peer=peer0.org1.example.com" \
@@ -192,9 +171,17 @@ curl -s -X GET \
 echo
 echo
 
-echo "10.GET query Transaction by TransactionID"
+echo "8.GET query Transaction by TransactionID"
 echo
 curl -s -X GET http://localhost:4000/channels/mychannel/transactions/$TRX_ID?peer=peer0.org1.example.com \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json"
+echo
+echo
+
+echo "9.GET query Transaction by TransactionID"
+echo
+curl -s -X GET http://localhost:4000/channels/mychannel/transactions/$TRX_ID2?peer=peer0.org1.example.com \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json"
 echo
@@ -215,7 +202,7 @@ echo
 #echo
 #echo
 
-echo "11.GET query ChainInfo"
+echo "10.GET query ChainInfo"
 echo
 curl -s -X GET \
   "http://localhost:4000/channels/mychannel?peer=peer0.org1.example.com" \
@@ -224,7 +211,7 @@ curl -s -X GET \
 echo
 echo
 
-echo "12.GET query Installed chaincodes"
+echo "11.GET query Installed chaincodes"
 echo
 curl -s -X GET \
   "http://localhost:4000/chaincodes?peer=peer0.org1.example.com" \
@@ -233,7 +220,7 @@ curl -s -X GET \
 echo
 echo
 
-echo "13.GET query Instantiated chaincodes"
+echo "12.GET query Instantiated chaincodes"
 echo
 curl -s -X GET \
   "http://localhost:4000/channels/mychannel/chaincodes?peer=peer0.org1.example.com" \
@@ -242,7 +229,7 @@ curl -s -X GET \
 echo
 echo
 
-echo "14.GET query Channels"
+echo "13.GET query Channels"
 echo
 curl -s -X GET \
   "http://localhost:4000/channels?peer=peer0.org1.example.com" \
@@ -252,4 +239,4 @@ echo
 echo
 
 
-echo "Total execution time : $(($(date +%s)-starttime)) secs ..."
+echo "Total #13 execution time : $(($(date +%s)-starttime)) secs ..."
