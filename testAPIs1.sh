@@ -76,23 +76,7 @@ echo "ORG2 token is $ORG2_TOKEN"
 echo
 echo
 
-
-echo "3.POST instantiate chaincode on peer1 of Org1"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/mychannel/chaincodes \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d "{
-	\"chaincodeName\":\"mycc\",
-	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\",
-	\"args\":[\"\"]
-}"
-echo
-echo
-
-echo "4.createCpty"
+echo "3.createCpty"
 echo
 TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/mychannel/chaincodes/mycc \
@@ -122,7 +106,7 @@ echo "Transacton ID is $TRX_ID"
 echo
 echo
 
-echo "4.createCpty"
+echo "5.createCpty"
 echo
 TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/mychannel/chaincodes/mycc \
@@ -134,22 +118,6 @@ TRX_ID=$(curl -s -X POST \
 	"args":["0003" , "CptyC" , "false"]
 }')
 echo "Transacton ID is $TRX_ID"
-echo
-echo
-
-
-echo "5.put approveflag=0"
-echo
-TRX_ID2=$(curl -s -X POST \
-  http://localhost:4000/channels/mychannel/chaincodes/mycc \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
-	"fcn":"put",
-	"args":["approveflag" , "0"]
-}')
-echo "Transacton ID is $TRX_ID2"
 echo
 echo
 
