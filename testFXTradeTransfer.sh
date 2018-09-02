@@ -85,7 +85,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["B","0001","0002","2018/01/01","2018/12/31","USD/TWD","USD","1000000","true"]
+	"args":["B","0001","0002","2018/01/01","2018/12/31","USD/TWD","USD","1000000","TWD","1000000","30","true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -100,7 +100,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["S","0002","0001","2018/01/01","2018/12/31","USD/TWD","USD","1000000","true"]
+	"args":["S","0002","0001","2018/01/01","2018/12/31","USD/TWD","USD","1000000","TWD","1000000","30","true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -115,7 +115,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["B","0001","0003","2018/02/01","2018/12/31","USD/TWD","USD","1000000","true"]
+	"args":["B","0001","0003","2018/02/01","2018/12/31","USD/TWD","USD","1000000","TWD","1000000","30","true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
