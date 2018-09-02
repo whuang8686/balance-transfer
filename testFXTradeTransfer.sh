@@ -40,10 +40,10 @@ function setChaincodePath(){
 	LANGUAGE=`echo "$LANGUAGE" | tr '[:upper:]' '[:lower:]'`
 	case "$LANGUAGE" in
 		"golang")
-		CC_SRC_PATH="github.com/cgschaincode"
+		CC_SRC_PATH="github.com/fxchaincode"
 		;;
 		"node")
-		CC_SRC_PATH="$PWD/artifacts/src/github.com/cgschaincode"
+		CC_SRC_PATH="$PWD/artifacts/src/github.com/fxchaincode"
 		;;
 		*) printf "\n ------ Language $LANGUAGE is not supported yet ------\n"$
 		exit 1
