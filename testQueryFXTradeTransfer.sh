@@ -85,9 +85,18 @@ TRX_ID1=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"getHistoryForTransaction",
-	"args":["0001B20180904105443"]
+	"args":["0001B20181009112451"]
 }')
 echo "Transacton ID is $TRX_ID1"
+echo
+echo
+
+echo "5.GET query chaincode on peer1 of Org1"
+echo
+curl -s -X GET \
+  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryTXIDTransactions&args=%5B%220001B20181009112451%22%5D" \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json"
 echo
 echo
 
@@ -95,7 +104,7 @@ echo
 echo "5.GET query chaincode on peer1 of Org1"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=getHistoryForTransaction&args=%5B%220001B20180904105443%22%5D" \
+  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=getHistoryForTransaction&args=%5B%220001B20181009105443%22%5D" \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json"
 echo
@@ -105,7 +114,7 @@ echo
 echo "6.GET query chaincode on peer1 of Org1-getHistoryTXIDForQueuedTransaction"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=getHistoryTXIDForQueuedTransaction&args=%5B%2220180904%22%2C%22c574ab64108e1014a8c44347b3d571c88f56f1966b0ff8fae8bcc6b0cbc5ddf7%22%5D" \
+  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=getHistoryTXIDForQueuedTransaction&args=%5B%2220181009%22%2C%22c574ab64108e1014a8c44347b3d571c88f56f1966b0ff8fae8bcc6b0cbc5ddf7%22%5D" \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json"
 echo
@@ -114,7 +123,7 @@ echo
 echo "6.GET query chaincode on peer1 of Org1-queryQueuedTransactionStatus"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryQueuedTransactionStatus&args=%5B%2220180904%22%2C%22Pending%22%2C%220001%22%5D" \
+  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryQueuedTransactionStatus&args=%5B%2220181009%22%2C%22%22%2C%220001%22%5D" \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json"
 echo

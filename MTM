@@ -1,0 +1,39 @@
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "B","0001","0002","2018/01/01","2018/12/30","USD/TWD","USD","1000000","TWD","30659900","30.6599","SPOT","true"]}' -C myc 
+0001B20181019145012
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "S","0002","0001","2018/01/01","2018/12/30","USD/TWD","USD","1000000","TWD","30666990","30.66699","SPOT","true"]}' -C myc 
+0002S20181019145041
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "B","0001","0003","2018/10/01","2018/11/30","AUD/HKD","AUD","1000000","HKD","5746500","5.7465","FW","true"]}' -C myc 
+0001B20181019145056
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "S","0003","0001","2018/10/01","2018/11/30","AUD/HKD","AUD","1000000","HKD","5736500","5.7365","FW","true"]}' -C myc 
+0003S20181019145117
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "B","0001","0002","2018/09/01","2018/10/30","USD/JPY","USD","1000000","JPY","113515590","113.51558999","FW","true"]}' -C myc
+0001B20181019145130
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeTransfer", "B","0001","0004","2018/08/01","2018/10/30","USD/SGD","USD","1000000","SGD","1367118.5","1.3671185","FW","true"]}' -C myc 
+0001B20181019145145
+
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181028142827","20181025"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0002S20181028142849","20181025"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181028142910","20181025"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0003S20181028142931","20181025"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181028142948","20181025"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181028143010","20181025"]}' -C myc 
+
+
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0002S20181026145435","20181026"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181026145456","20181026"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0003S20181026145508","20181026"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181026145532","20181026"]}' -C myc 
+peer chaincode invoke -n mycc -c '{"Args":["FXTradeMTM", "0001B20181026145545","20181026"]}' -C myc 
+
+peer chaincode query -n mycc -c '{"Args":["queryMTMTransactionStatus","MTM20181025","0001"]}' -C myc
+
+
+peer chaincode query -n mycc -c '{"Args":["queryTables","{\"selector\":{\"docType\":\"MTMPrice\",\"TXKEY\":\"MTM20181025\"}}"]}' -C myc
+peer chaincode query -n mycc -c '{"Args":["queryTables","{\"selector\":{\"docType\":\"Transaction\"}}"]}' -C myc
+peer chaincode query -n mycc -c '{"Args":["queryTables","{\"selector\":{\"docType\":\"MTM\"}}"]}' -C myc

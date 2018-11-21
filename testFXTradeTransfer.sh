@@ -85,7 +85,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["B","0001","0002","2018/01/01","2018/12/31","USD/TWD","USD","1000000","TWD","1000000","30","true"]
+	"args":["S","0001","0005",	"2018/04/26",	"2018/12/21",	"USD/CNH" ,	"USD"	,"800000"    ,"CNH",    "5104977.6"  	,"6.381222"  	,"FW",  "true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -100,7 +100,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["S","0002","0001","2018/01/01","2018/12/31","USD/TWD","USD","1000000","TWD","3000000","30","true"]
+	"args":["S","0005","0004",	"2018/04/30",	"2018/09/21",	"GBP/USD" ,	"GBP"	,"500000"    ,"USD",    "691133.25"  	,"1.382267"  	,"FW",  "true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -115,7 +115,142 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeTransfer",
-	"args":["B","0001","0003","2018/02/01","2018/10/31","USD/TWD","USD","2000000","TWD","1000000","30","true"]
+	"args":["S","0002","0001",	"2018/05/02",	"2019/04/04",	"USD/CNH" ,	"USD"	,"3030000"	 ,"CNH",    "19518351"	  ,"6.4417"   ,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "6.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0001","0007",	"2018/05/02",	"2018/09/21",	"USD/CNH" ,	"USD"	,"1000000"	 ,"CNH",    "6397165"	    ,"6.397165"  	,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "7.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["S","0002","0008",	"2018/05/02",	"2019/04/04",	"USD/CNH" ,	"USD"	,"2370000"	 ,"CNH",    "15275598"	  ,"6.4454"   ,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "8.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0005","0001",	"2018/04/26",	"2018/12/21",	"USD/CNH" ,	"USD"	,"800000"    ,"CNH",	  "5088977.6"	  ,"6.361222"  	,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "9.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0004","0005",	"2018/04/30",	"2018/09/21",	"GBP/USD" ,	"GBP"	,"500000"    ,"USD",	  "681133.5"	  ,"1.362267"  	,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "10.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0001","0002",	"2018/05/02",	"2019/04/04",	"USD/CNH" ,	"USD"	,"3030000"	 ,"CNH",  	"19457751"	  ,"6.4217"     ,"FW",  "true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "11.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["S","0001","0005",	"2018/04/18",	"2018/12/21",	"USD/CNH" ,	"USD"	,"1600000"	 ,"CNH",  	"10128697.6"	,"6.330436"  	,"SPOT","true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "12.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["S","0001","0007",	"2018/07/20",	"2018/09/20",	"EUR/CNH" ,	"EUR"	,"500000"    ,"CNH",	  "3992502"	    ,"7.985004"  	,"SPOT","true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "13.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0005","0001",	"2018/04/18",	"2018/12/21",	"USD/CNH" ,	"USD"	,"1600000"	 ,"CNH",  	"10096697.6"	,"6.310436"  	,"SPOT","true"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "14.FXTradeTransfer"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"fcn":"FXTradeTransfer",
+	"args":["B","0007","0001",	"2018/07/20",	"2018/09/20",	"EUR/CNH" ,	"EUR"	,"500000"    ,"CNH",	  "3982502"	    ,"7.965004"  	,"SPOT","true"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
