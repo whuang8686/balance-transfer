@@ -85,7 +85,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeMTM",
-  "args":["0001S20181121150928","20181121"]
+  "args":["0001S20181124032338","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -100,7 +100,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeMTM",
-  "args":["0002S20181121150933","20181121"]
+  "args":["0002S20181124032343","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -115,7 +115,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"FXTradeMTM",
-  "args":["0002S20181121150938","20181121"]
+  "args":["0002S20181124032348","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -130,7 +130,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
   "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
   "fcn":"FXTradeMTM",
-  "args":["0005B20181121150941","20181121"]
+  "args":["0005B20181124032351","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -145,7 +145,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
   "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
   "fcn":"FXTradeMTM",
-  "args":["0001B20181121150946","20181121"]
+  "args":["0001B20181124032356","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -160,7 +160,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
   "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
   "fcn":"FXTradeMTM",
-  "args":["0001S20181121150948","20181121"]
+  "args":["0001S20181124032358","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
@@ -175,7 +175,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
   "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
   "fcn":"FXTradeMTM",
-  "args":["0005B20181121150953","20181121"]
+  "args":["0005B20181124032403","20181124"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo
