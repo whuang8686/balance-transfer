@@ -13,7 +13,7 @@ var registeredEvent = async function(eventName, peerNames, channelName, username
         var client = await helper.getClientForOrg(org_name, username);
         var tx_id = client.newTransactionID();
         var channel = client.getChannel(channelName);
-        var channel_event_hubs = channel.getChannelEventHubsForOrg();
+        var channel_event_hub = channel.getChannelEventHubsForOrg();
 		let request = {
     		targets : peerNames,
     		chaincodeId: channelName,
