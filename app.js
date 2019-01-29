@@ -38,6 +38,7 @@ var install = require('./app/install-chaincode.js');
 var instantiate = require('./app/instantiate-chaincode.js');
 var invoke = require('./app/invoke-transaction.js');
 var query = require('./app/query.js');
+var event = require('./app/event.js');
 var host = process.env.HOST || hfc.getConfigSetting('host');
 var port = process.env.PORT || hfc.getConfigSetting('port');
 ///////////////////////////////////////////////////////////////////////////////
@@ -406,5 +407,18 @@ app.get('/channels', async function(req, res) {
 	}
 
 	let message = await query.getChannels(peer, req.username, req.orgname);
+	res.send(message);
+});
+
+// Query to event
+//
+app.get('/events', async function(req, res) {
+    var channelName = req.query.channelName;
+	var peers = req.query.peers;
+	var eventname = req.query.eventname;
+	
+	//let message = await event.registeredEvent(eventname, peers, channelName, req.username, req.orgname);
+	let message = await event.registeredEvent(eventname, peers, channelName, "Jim", "Org1");
+	
 	res.send(message);
 });
