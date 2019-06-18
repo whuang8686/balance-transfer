@@ -412,13 +412,13 @@ app.get('/channels', async function(req, res) {
 
 // Query to event
 //
-app.get('/events', async function(req, res) {
+app.post('/events', async function(req, res) {
     var channelName = req.query.channelName;
 	var peers = req.query.peers;
 	var eventname = req.query.eventname;
 	
-	//let message = await event.registeredEvent(eventname, peers, channelName, req.username, req.orgname);
-	let message = await event.registeredEvent(eventname, peers, channelName, "Jim", "Org1");
+	//let message = await event.registeredEvent(eventname, peers, channelName, chaincodeName, req.username, req.orgname);
+	let message = await event.registeredEvent(eventname, peers, channelName, "mycc", "Jim", "Org1");
 	
 	res.send(message);
 });

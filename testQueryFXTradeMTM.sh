@@ -82,7 +82,7 @@ echo
 echo "6.GET query chaincode on peer1 of Org1-queryQueuedTransactionStatus"
 echo
 curl -s -X GET \
-  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryMTMTransactionStatus&args=%5B%22MTM20181121%22%2C%22All%22%5D" \
+  "http://localhost:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=queryMTMTransactionStatus&args=%5B%22MTM20190426%22%2C%22All%22%5D" \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json"
 echo

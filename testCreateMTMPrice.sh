@@ -85,7 +85,22 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
 	"fcn":"createMTMPrice",
-	"args":["192.168.0.28","20181124"]
+	"args":["192.168.0.30","20190605"]
+}')
+echo "Transacton ID is $TRX_ID"
+echo
+echo
+
+echo "4.createMTMPrice"
+echo
+TRX_ID=$(curl -s -X POST \
+  http://localhost:4000/channels/mychannel/chaincodes/mycc \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d '{
+  "peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+  "fcn":"createBondPrice",
+  "args":["192.168.0.30","20190605"]
 }')
 echo "Transacton ID is $TRX_ID"
 echo

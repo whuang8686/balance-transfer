@@ -48,7 +48,14 @@ var invokeChaincode = async function(peerNames, channelName, chaincodeName, fcn,
 			chainId: channelName,
 			txId: tx_id
 		};
+        logger.info('fcn：%s', fcn);
+        logger.info('args : %s', args);
+        logger.info('peerNames : %s', peerNames);
+        logger.info('chaincodeName : %s', chaincodeName);
+        logger.info('channelName : %s', channelName);
+        logger.info('tx_id : %s', tx_id);
 
+        logger.info('Successfully sent transaction to the orderer.');
 		let results = await channel.sendTransactionProposal(request);
 
 		// the returned object has both the endorsement results
